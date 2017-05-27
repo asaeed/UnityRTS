@@ -1,24 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UnitRangeScript : MonoBehaviour {
+public class SurvivorRangeScript : MonoBehaviour {
 
-	private UnitScript parentScript;
+	private SurvivorScript parentScript;
 	public GameObject closestZ;
 
 	void Awake() {
-		parentScript = transform.parent.GetComponent<UnitScript>();
+		parentScript = transform.parent.GetComponent<SurvivorScript>();
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.tag == "Zombie") {
+		if (other.tag == "Zombie") {
 			print("enemy in range!");
 			parentScript.Attack(other.gameObject);
 		}
 	}
 
 	void OnTriggerStay(Collider other) {
-		if (other.gameObject.tag != "Zombie") return;
+		if (other.tag != "Zombie") return;
 
 		var z = other.gameObject;
 		if (closestZ == null) {
@@ -35,7 +35,7 @@ public class UnitRangeScript : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider other) {
-		if (other.gameObject.tag == "Zombie") {
+		if (other.tag == "Zombie") {
 			parentScript.Guard();
 		}
 	}
