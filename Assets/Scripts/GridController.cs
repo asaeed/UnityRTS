@@ -28,7 +28,7 @@ public class GridController : MonoBehaviour {
 	void SelectGridCell(GameObject g, Vector3 hit) {
 		if (g != gameObject) return;
 		if (selectedUnit == null) return;
-		if (selectedUnit.transform.tag != "Unit") return;
+		if (selectedUnit.transform.tag != "Survivor") return;
 
 		Vector3 dest = new Vector3(Mathf.Round(hit.x), 0f, Mathf.Round(hit.z));
 		//print(dest);
@@ -36,5 +36,7 @@ public class GridController : MonoBehaviour {
 		var unitScript = selectedUnit.GetComponent<UnitScript>();
 		unitScript.MoveUnit(dest);
 	}
+
+	// TODO: Create helper methods to search and manipulate the grid
 
 }

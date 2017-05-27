@@ -32,7 +32,7 @@ public class EventManager : MonoBehaviour {
 			
 			if (Physics.Raycast(ray, out hit, 100)) {
 				if (Input.GetMouseButtonDown(0)) {
-					print("mousebutton DOWN");
+					//print("mousebutton DOWN");
 					//dragStartPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 					dragStartPos.x = Input.mousePosition.x;
 					dragStartPos.y = Input.mousePosition.y;
@@ -48,18 +48,23 @@ public class EventManager : MonoBehaviour {
 					Vector2 dragCurPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 					Vector2 dragDiff = dragCurPos - dragStartPos;
 					if (dragDiff.magnitude > dragThresh) {
-						isDragging = true;
-                        // for perspective camera use:
-						transform.Translate(-dragDiff.x * dragSpeed - dragDiff.y * dragSpeed, 0, -dragDiff.y * dragSpeed + dragDiff.x * dragSpeed);
-                        // for orthographic camera use:
-                        // transform.Translate(-dragDiff.x * dragSpeed, -dragDiff.y * dragSpeed, 0);
+
+                        // TODO: don't drag out of bounds of grid
+                        //print(transform.position);
+                        float xDrag = -dragDiff.x * dragSpeed - dragDiff.y * dragSpeed;
+                        float zDrag = -dragDiff.y * dragSpeed + dragDiff.x * dragSpeed;
+
+                        // dragged more than threshold so move the transform (camera in this case)
+                        isDragging = true;
+						transform.Translate(xDrag, 0, zDrag);  // for perspective camera
+                        // transform.Translate(-dragDiff.x * dragSpeed, -dragDiff.y * dragSpeed, 0);  // for orthographic camera
                         dragStartPos.x = Input.mousePosition.x;
 						dragStartPos.y = Input.mousePosition.y;
 					}
 				}
 
 				if (Input.GetMouseButtonUp(0)) {
-					print("mousebutton UP");
+					//print("mousebutton UP");
 
 					// ignore if dragging
 					if (!isDragging) {
