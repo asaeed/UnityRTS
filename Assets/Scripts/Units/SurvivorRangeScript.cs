@@ -11,10 +11,7 @@ public class SurvivorRangeScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.tag == "Zombie") {
-			print("enemy in range!");
-			parentScript.Attack(other.gameObject);
-		}
+		
 	}
 
 	void OnTriggerStay(Collider other) {
@@ -35,8 +32,6 @@ public class SurvivorRangeScript : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider other) {
-		if (other.tag == "Zombie") {
-			parentScript.Guard();
-		}
+
 	}
 }

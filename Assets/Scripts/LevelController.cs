@@ -23,7 +23,7 @@ public class LevelController : MonoBehaviour {
 			}
 		}
 			
-		// also a horde wandering in one directio
+		// also a horde wandering in one direction
 	}
 	
 	// Update is called once per frame

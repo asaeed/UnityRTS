@@ -126,7 +126,7 @@ public class SurvivorScript : UnitScript {
 		this.state = SurvivorState.Attack;
 	}
 
-	public void Guard() {
+	public void Wait() {
 		this.target = null;
 		this.state = SurvivorState.Wait;
 	}

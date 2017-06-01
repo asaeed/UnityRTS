@@ -56,7 +56,7 @@ public class ZombieScript : UnitScript {
 	private float lastLurkTime = 0f;
 	private float lurkDistance = 1f;
 
-	private Vector3 wanderTo;
+	public Vector3 wanderTo;
 	private float wanderInterval = 1f;
 	private float lastWanderTime = 0f;
 	private float wanderDistance = 1f;
