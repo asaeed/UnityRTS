@@ -115,7 +115,7 @@ public class SurvivorScript : UnitScript {
 		base.SelectUnit(g, hit);
 
 		// populate ui
-		GameObject.Find("UI_Name").GetComponent<Text>().text = survivorName;
+		GameObject.Find("uiName").GetComponent<Text>().text = survivorName;
 
 		// show ui
 		ToggleUI(true);

@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Lean.Touch;
+using System.Collections.Generic;
 
 public class EventManager : MonoBehaviour {
 
@@ -17,11 +19,91 @@ public class EventManager : MonoBehaviour {
 
 	private Vector2 dragStartPos = new Vector2();
 	private bool isDragging = false;
+	private bool isFingerDown = false;
 
 	
 	void Start () {
 	
 	}
+
+	// TODO: replace what's in Update() with LeanTouch events tied here in OnEnable()
+
+	protected virtual void OnEnable()
+	{
+		// Hook into the events we need
+		LeanTouch.OnFingerDown  += OnFingerDown;
+		LeanTouch.OnFingerSet   += OnFingerSet;
+		LeanTouch.OnFingerUp    += OnFingerUp;
+		LeanTouch.OnGesture     += OnGesture;
+		LeanTouch.OnFingerSwipe += OnFingerSwipe;
+	}
+
+	protected virtual void OnDisable()
+	{
+		// Unhook the events
+		LeanTouch.OnFingerDown  -= OnFingerDown;
+		LeanTouch.OnFingerSet   -= OnFingerSet;
+		LeanTouch.OnFingerUp    -= OnFingerUp;
+		LeanTouch.OnGesture     -= OnGesture;
+		LeanTouch.OnFingerSwipe -= OnFingerSwipe;
+	}
+
+	public void OnFingerDown(LeanFinger finger)
+	{
+		if (finger.StartedOverGui == true)
+		{
+			return;
+		}
+
+		// set variable to hold finger down state
+		isFingerDown = true;
+	}
+
+	public void OnFingerSet(LeanFinger finger)
+	{
+		if (finger.ScreenDelta.magnitude > 1f)
+			Debug.Log("Finger " + finger.Index + " is held on the screen");
+	}
+
+	public void OnFingerUp(LeanFinger finger)
+	{
+		// Debug.Log("Finger " + finger.Index + " finished touching the screen");
+		isFingerDown = false;
+	}
+
+	public void OnFingerTap(LeanFinger finger)
+	{
+		Debug.Log("Finger " + finger.Index + " tapped the screen");
+	}
+
+	public void OnFingerSwipe(LeanFinger finger)
+	{
+		var swipe = finger.SwipeScreenDelta;
+		if (swipe.x < -Mathf.Abs (swipe.y)) {
+			Debug.Log ("You swiped left!");
+		}
+		if (swipe.x > Mathf.Abs (swipe.y)) {
+			Debug.Log ("You swiped right!");
+		}
+	}
+
+	public void OnGesture(List<LeanFinger> fingers)
+	{
+		/*
+			Debug.Log ("Gesture with " + fingers.Count + " finger(s)");
+			Debug.Log ("    pinch scale: " + LeanGesture.GetPinchScale (fingers));
+			Debug.Log ("    twist degrees: " + LeanGesture.GetTwistDegrees (fingers));
+			Debug.Log ("    twist radians: " + LeanGesture.GetTwistRadians (fingers));
+			Debug.Log ("    screen delta: " + LeanGesture.GetScreenDelta (fingers));
+		*/
+
+//		if (currentState == StateType.Move) {
+//			chairSelector.rotateObject (LeanGesture.GetScreenDelta (fingers).x * -.25f); 
+//		} else if (currentState == StateType.Swap) {
+//			chairSelector.slideChairs (LeanGesture.GetScreenDelta (fingers).x);
+//		}
+	}
+
 	
 	void Update() {
 	

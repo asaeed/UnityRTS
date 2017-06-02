@@ -19,9 +19,11 @@ public class UIController : MonoBehaviour {
 	public void show() {
 		if (visible) return;
 
+		var uiWidth = this.transform.GetComponent<RectTransform> ().rect.width;
+
 		visible = true;
 		AbstractGoTween tweenUI = Go.to (transform, .1f, new GoTweenConfig ()
-			.localPosition(new Vector3 (initialPosition.x - 80.0f, initialPosition.y, initialPosition.z)));
+			.localPosition(new Vector3 (initialPosition.x - uiWidth, initialPosition.y, initialPosition.z)));
 	}
 
 	public void hide() {
