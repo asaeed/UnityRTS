@@ -60,6 +60,7 @@ using UnityEngine.UI;
 public class SurvivorScript : UnitScript {
 
 	public string survivorName;
+	public Sprite portrait;
 	public float health = 20;
 
 	public enum SurvivorState {
@@ -115,6 +116,7 @@ public class SurvivorScript : UnitScript {
 		base.SelectUnit(g, hit);
 
 		// populate ui
+		GameObject.Find("uiImage").GetComponent<Image>().sprite = portrait;
 		GameObject.Find("uiName").GetComponent<Text>().text = survivorName;
 
 		// show ui

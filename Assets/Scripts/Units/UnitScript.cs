@@ -30,8 +30,8 @@ public class UnitScript : MonoBehaviour {
 	}
 
 	public void ToggleUI(bool show) {
-		var uiPanel = GameObject.Find("uiPanel").gameObject;
-		var uiScript = uiPanel.GetComponent<UIController>();
+		var ui = GameObject.Find("UI").gameObject;
+		var uiScript = ui.GetComponent<UIController>();
 		if (show)
 			uiScript.show ();
 		else

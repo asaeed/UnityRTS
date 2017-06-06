@@ -4,33 +4,31 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour {
 
-	private bool visible = false;
-	private Vector3 initialPosition;
+	public GameObject panel;
+	private bool panelVisible = false;
+	private Vector3 panelPosition;
+	private float panelWidth;
 
 	void Start () {
-		initialPosition = this.transform.localPosition;
-	}
-
-	// Update is called once per frame
-	void Update () {
-		
+		panelPosition = panel.transform.localPosition;
+		panelWidth = panel.transform.GetComponent<RectTransform> ().rect.width;
 	}
 
 	public void show() {
-		if (visible) return;
+		if (panelVisible) return;
 
-		var uiWidth = this.transform.GetComponent<RectTransform> ().rect.width;
-
-		visible = true;
-		AbstractGoTween tweenUI = Go.to (transform, .1f, new GoTweenConfig ()
-			.localPosition(new Vector3 (initialPosition.x - uiWidth, initialPosition.y, initialPosition.z)));
+		panelVisible = true;
+		var tweenMoveUI = Go.to (panel.transform, .2f, new GoTweenConfig ()
+			.localPosition(new Vector3 (panelPosition.x - panelWidth, panelPosition.y, panelPosition.z)));
+		LeanTween.alphaCanvas(panel.GetComponent<CanvasGroup>(), 1f, .2f);
 	}
 
 	public void hide() {
-		if (!visible) return;
+		if (!panelVisible) return;
 
-		visible = false;
-		AbstractGoTween tweenUI = Go.to (transform, .1f, new GoTweenConfig ()
-			.localPosition(new Vector3 (initialPosition.x, initialPosition.y, initialPosition.z)));
+		panelVisible = false;
+		AbstractGoTween tweenUI = Go.to (panel.transform, .2f, new GoTweenConfig ()
+			.localPosition(new Vector3 (panelPosition.x, panelPosition.y, panelPosition.z)));
+		LeanTween.alphaCanvas(panel.GetComponent<CanvasGroup>(), 0f, .2f);
 	}
 }
