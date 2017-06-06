@@ -14,11 +14,11 @@ public class GridController : MonoBehaviour {
 	}
 
 	void OnEnable() {
-		EventManager.OnGameObjectClicked += SelectGridCell;
+		InputController.OnGameObjectClicked += SelectGridCell;
 	}
 
 	void OnDisable() {
-		EventManager.OnGameObjectClicked -= SelectGridCell;
+		InputController.OnGameObjectClicked -= SelectGridCell;
 	}
 
 	void Start() {

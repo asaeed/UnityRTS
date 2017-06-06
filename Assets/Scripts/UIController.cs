@@ -31,4 +31,20 @@ public class UIController : MonoBehaviour {
 			.localPosition(new Vector3 (panelPosition.x, panelPosition.y, panelPosition.z)));
 		LeanTween.alphaCanvas(panel.GetComponent<CanvasGroup>(), 0f, .2f);
 	}
+
+	public void onAttack() {
+
+	}
+		
+	public void onMove() {
+
+	}
+
+	public void onForage() {
+
+	}
+
+	public void onReturn() {
+
+	}
 }

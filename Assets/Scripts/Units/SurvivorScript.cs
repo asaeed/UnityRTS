@@ -83,11 +83,11 @@ public class SurvivorScript : UnitScript {
 	private float chanceOfPause = .3f; 
 
 	void OnEnable() {
-		EventManager.OnGameObjectClicked += SelectUnit;
+		InputController.OnGameObjectClicked += SelectUnit;
 	}
 	
 	void OnDisable() {
-		EventManager.OnGameObjectClicked -= SelectUnit;
+		InputController.OnGameObjectClicked -= SelectUnit;
 	}
 
 	void Start() {
