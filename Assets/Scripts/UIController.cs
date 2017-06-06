@@ -18,8 +18,8 @@ public class UIController : MonoBehaviour {
 		if (panelVisible) return;
 
 		panelVisible = true;
-		var tweenMoveUI = Go.to (panel.transform, .2f, new GoTweenConfig ()
-			.localPosition(new Vector3 (panelPosition.x - panelWidth, panelPosition.y, panelPosition.z)));
+
+		LeanTween.moveLocalX (panel, panelPosition.x - panelWidth, .2f);
 		LeanTween.alphaCanvas(panel.GetComponent<CanvasGroup>(), 1f, .2f);
 	}
 
@@ -27,8 +27,8 @@ public class UIController : MonoBehaviour {
 		if (!panelVisible) return;
 
 		panelVisible = false;
-		AbstractGoTween tweenUI = Go.to (panel.transform, .2f, new GoTweenConfig ()
-			.localPosition(new Vector3 (panelPosition.x, panelPosition.y, panelPosition.z)));
+
+		LeanTween.moveLocalX (panel, panelPosition.x, .2f);
 		LeanTween.alphaCanvas(panel.GetComponent<CanvasGroup>(), 0f, .2f);
 	}
 
