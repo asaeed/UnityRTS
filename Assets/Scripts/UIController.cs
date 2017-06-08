@@ -33,19 +33,20 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void onAttack() {
-
+		print ("attack button pressed");
 	}
 		
 	public void onMove() {
-
+		print ("move button pressed");
 	}
 
 	public void onForage() {
+		print ("forage button pressed");
 
 	}
 
 	public void onReturn() {
-
+		print ("return button pressed");
 	}
 
 }
