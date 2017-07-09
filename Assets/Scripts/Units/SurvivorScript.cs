@@ -62,6 +62,7 @@ public class SurvivorScript : UnitScript {
 	public string survivorName;
 	public Sprite portrait;
 	public float health = 20;
+	public GameObject selectRing;
 
 	public enum SurvivorState {
 		Wait,
@@ -115,12 +116,8 @@ public class SurvivorScript : UnitScript {
 		// base class Unit's method SelectUnit called
 		base.SelectUnit(g, hit);
 
-		// populate ui
-		GameObject.Find("uiImage").GetComponent<Image>().sprite = portrait;
-		GameObject.Find("uiName").GetComponent<Text>().text = survivorName;
-
-		// show ui
-		ToggleUI(true);
+		// populate and show ui
+		GameObject.Find("UI").GetComponent<UIController>().updateUI(gameObject);
 	}
 
 	public void Attack(GameObject target) {

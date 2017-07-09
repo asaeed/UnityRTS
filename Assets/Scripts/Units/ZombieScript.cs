@@ -126,8 +126,8 @@ public class ZombieScript : UnitScript {
 		// base class Unit's method SelectUnit called (blinks object)
 		base.SelectUnit(g, hit);
 
-		// hide the ui
-		ToggleUI(false);
+		// update ui
+		GameObject.Find("UI").GetComponent<UIController>().updateUI(gameObject);
 	}
 	
 	public void Lurk() {

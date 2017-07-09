@@ -29,15 +29,6 @@ public class UnitScript : MonoBehaviour {
 			.setIterations(4, GoLoopType.PingPong));
 	}
 
-	public void ToggleUI(bool show) {
-		var ui = GameObject.Find("UI").gameObject;
-		var uiScript = ui.GetComponent<UIController>();
-		if (show)
-			uiScript.show ();
-		else
-			uiScript.hide ();
-	}
-
 	public void MoveUnit(Vector3 dest) {
 		UnityEngine.AI.NavMeshAgent nma = transform.GetComponent<UnityEngine.AI.NavMeshAgent>();
 		nma.SetDestination(dest);
