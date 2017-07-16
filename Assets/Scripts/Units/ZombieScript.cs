@@ -131,7 +131,7 @@ public class ZombieScript : UnitScript {
 	}
 	
 	public void Lurk() {
-		print("zombie starts lurking");
+		//print("zombie starts lurking");
 		target = null;
 
 		// set zombie up to move in 4-8 seconds
@@ -141,7 +141,7 @@ public class ZombieScript : UnitScript {
 	}
 		
 	public void Wander(Vector3 dest) {
-		print("zombie wandering");
+		//print("zombie wandering");
 
 		// set wander destination
 		wanderTo = dest;
@@ -150,25 +150,25 @@ public class ZombieScript : UnitScript {
 	}
 
 	public void Attack(GameObject tar) {
-		print("zombie attacking");
+		//print("zombie attacking");
 		target = tar;
 		state = ZombieState.Attack;
 	}
 
 	public void Die() {
-		print("zombie dies!");
+		//print("zombie dies!");
 		AbstractGoTween tween = Go.to(gameObject.transform, .8f, new GoTweenConfig()
 			.scale(0f)
 			.onComplete(onDieComplete));
 	}
 
 	public void onDieComplete(AbstractGoTween tween) {
-		print("in onDieComplete");
+		//print("in onDieComplete");
 		Destroy(gameObject);
 	}
 
 	public void Slow(Vector3 bulletVelocity) {
-		print("zombie slowed!");
+		//print("zombie slowed!");
 		this.gameObject.GetComponent<Rigidbody>().velocity = bulletVelocity/4;
 		StartCoroutine(EndSlow());
 	}

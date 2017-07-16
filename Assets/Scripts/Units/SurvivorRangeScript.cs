@@ -17,6 +17,7 @@ public class SurvivorRangeScript : MonoBehaviour {
 	void OnTriggerStay(Collider other) {
 		if (other.tag != "Zombie") return;
 
+		// attack the closest zombie
 		var z = other.gameObject;
 		if (closestZ == null) {
 			closestZ = z;

@@ -10,7 +10,19 @@ public class UIController : MonoBehaviour {
 	private Vector3 panelPosition;
 	private float panelWidth;
 
+	public Button attackButton;
+	public Button moveButton;
+	//public GameObject gatherButton;
+	//public GameObject returnButton;
+
 	public GameObject selectedUnit;
+
+	public enum UIState {
+		None,
+		MovePressed,
+		AttackPressed
+	}
+	public UIState state = UIState.None;
 
 	void Start () {
 		panelPosition = panel.transform.localPosition;
@@ -58,20 +70,38 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void onAttack() {
-		print ("attack button pressed");
+		if (state == UIState.AttackPressed) {
+			state = UIState.None;
+			attackButton.image.CrossFadeColor(attackButton.colors.normalColor, .1f, true, true);
+		} else {
+			state = UIState.AttackPressed;
+			moveButton.image.CrossFadeColor(moveButton.colors.normalColor, .1f, true, true);
+			attackButton.image.CrossFadeColor(attackButton.colors.pressedColor, .1f, true, true);
+		}
 	}
 		
 	public void onMove() {
-		print ("move button pressed");
+		if (state == UIState.MovePressed) {
+			state = UIState.None;
+			moveButton.image.CrossFadeColor(moveButton.colors.normalColor, .1f, true, true);
+		} else {
+			state = UIState.MovePressed;
+			attackButton.image.CrossFadeColor(attackButton.colors.normalColor, .1f, true, true);
+			moveButton.image.CrossFadeColor(moveButton.colors.pressedColor, .1f, true, true);
+		}
 	}
 
 	public void onForage() {
-		print ("forage button pressed");
+		state = UIState.None;
+		moveButton.image.CrossFadeColor(moveButton.colors.normalColor, .1f, true, true);
+		attackButton.image.CrossFadeColor(attackButton.colors.normalColor, .1f, true, true);
 
 	}
 
 	public void onReturn() {
-		print ("return button pressed");
+		state = UIState.None;
+		moveButton.image.CrossFadeColor(moveButton.colors.normalColor, .1f, true, true);
+		attackButton.image.CrossFadeColor(attackButton.colors.normalColor, .1f, true, true);
 	}
 
 }

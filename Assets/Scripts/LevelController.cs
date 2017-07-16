@@ -9,7 +9,6 @@ public class LevelController : MonoBehaviour {
 	public float spawnInterval = 10f;
 	private float lastSpawnTime = 0;
 
-	// Use this for initialization
 	void Start () {
 		zombiePrefab.CreatePool(8);
 		prefabPosition = zombiePrefab.transform.position;
@@ -20,15 +19,16 @@ public class LevelController : MonoBehaviour {
 			if (Mathf.Abs (randomLocation.x) > 10f || Mathf.Abs (randomLocation.z) > 10f) {
 				GameObject z = zombiePrefab.Spawn (randomLocation);
 				z.GetComponent<ZombieScript> ().Lurk ();
+
+				print(ObjectPool.CountSpawned(zombiePrefab) + "of" + ObjectPool.CountPooled(zombiePrefab));
 			}
 		}
 			
 		// also a horde wandering in one direction
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-		// every second spawn a zombie on a random location on the board
+		// at an interval spawn a zombie on a random location on the board
 		var curTime = Time.time;
 		if (curTime - lastSpawnTime > spawnInterval) {
 			lastSpawnTime = curTime;
