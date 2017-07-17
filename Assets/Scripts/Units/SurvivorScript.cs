@@ -100,6 +100,10 @@ public class SurvivorScript : UnitScript {
 	void Update() {
 		float curTime = Time.time;
 		if (this.state == SurvivorState.Attack && target != null) {
+
+			// TODO: here, see if target is within range, otherwise need to move towards it (if its user initiated)
+
+			// at an interval, fire at will
 			if (curTime - lastShotTime > coolDownTime) {
 				 
 				// this creates a little randomness in shots fired

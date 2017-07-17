@@ -107,11 +107,12 @@ public class InputController : MonoBehaviour {
 	
 	void Update() {
 	
-		// mouse event
+		// mouse event occurred
 		if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0) || Input.GetMouseButtonUp(0)) {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
-			
+
+			// if you hit anything, take action based on what event was fired
 			if (Physics.Raycast(ray, out hit, 100)) {
 				if (Input.GetMouseButtonDown(0)) {
 					//print("mousebutton DOWN");

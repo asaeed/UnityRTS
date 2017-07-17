@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class GridController : MonoBehaviour {
 
+	// TODO: apply this singleton pattern to other singletons?
 	public static GridController instance;
 	public List<List<GridCell>> grid;
 

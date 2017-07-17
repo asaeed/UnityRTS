@@ -10,21 +10,24 @@ public class LevelController : MonoBehaviour {
 	private float lastSpawnTime = 0;
 
 	void Start () {
-		zombiePrefab.CreatePool(8);
+		zombiePrefab.CreatePool(60);
 		prefabPosition = zombiePrefab.transform.position;
 
 		// create some randomly located lurking zombies, but not close to center
 		for (int i = 0; i < 60; i++) {
+			// TODO: grab size of the grid dynamically from GridController
 			Vector3 randomLocation = new Vector3 (Random.Range (-50f, 50f), prefabPosition.y, Random.Range (-50f, 50f));
+
+			// just don't create them if they happen to exist by the center
 			if (Mathf.Abs (randomLocation.x) > 10f || Mathf.Abs (randomLocation.z) > 10f) {
 				GameObject z = zombiePrefab.Spawn (randomLocation);
 				z.GetComponent<ZombieScript> ().Lurk ();
 
-				print(ObjectPool.CountSpawned(zombiePrefab) + "of" + ObjectPool.CountPooled(zombiePrefab));
+				//print(ObjectPool.CountSpawned(zombiePrefab) + "of" + ObjectPool.CountPooled(zombiePrefab));
 			}
 		}
 			
-		// also a horde wandering in one direction
+		// also a horde wandering in one direction?
 	}
 
 	void Update () {
