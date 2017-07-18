@@ -151,7 +151,6 @@ public class InputController : MonoBehaviour {
 
 					// this prevents a tap on the gui from triggering the event in the world
 					var isOverGui = UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject (-1);
-					//var isOverGui = false;
 
 					// ignore if dragging
 					if (!isDragging && !isOverGui) {

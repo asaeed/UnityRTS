@@ -17,6 +17,7 @@ public class UIController : MonoBehaviour {
 
 	public GameObject selectedUnit;
 
+	// states of the UI Panel, not the player, only has to track when some buttons are pressed
 	public enum UIState {
 		None,
 		MovePressed,
@@ -25,10 +26,9 @@ public class UIController : MonoBehaviour {
 	public UIState state = UIState.None;
 
 	void Start () {
+		// set panel position and width to be able to animate it in/out
 		panelPosition = panel.transform.localPosition;
 		panelWidth = panel.transform.GetComponent<RectTransform> ().rect.width;
-
-
 	}
 
 	public void show() {
@@ -49,6 +49,7 @@ public class UIController : MonoBehaviour {
 		LeanTween.alphaCanvas(panel.GetComponent<CanvasGroup>(), 0f, .2f);
 	}
 
+	// called when a player unit is selected (in SurvivorScript)
 	public void updateUI(GameObject unit) {
 
 		// if prev selection is survior, hide its select ring

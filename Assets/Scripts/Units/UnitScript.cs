@@ -15,9 +15,10 @@ public class UnitScript : MonoBehaviour {
 	}
 
 	public virtual void SelectUnit(GameObject g, Vector3 hit) {
+		// actions taken for all types of units (survivors & zombies)
 		BlinkUnit (g);
 	}
-
+		
 	public void BlinkUnit(GameObject g) {
 		GridController.selectedUnit = g;
 
